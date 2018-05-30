@@ -1,0 +1,63 @@
+##                                                                                    
+## c: The connection.                                                                 
+##                                                                                    
+## is_orig: True if the event is raised for the originator side.                      
+##                                                                                    
+## command: The IMAP command issued by the client (without any arguments).            
+##                                                                                    
+## arg: The arguments going with the command.                                         
+##                                                                                    
+event imap_request%(c: connection,  is_orig: bool, command: string, arg: string%);
+
+##                                                                                    
+## c: The connection.                                                                 
+##                                                                                    
+## is_orig: True if the event is raised for the originator side.                      
+##                                                                                    
+## code: The response code the server responded with.                                 
+##                                                                                    
+## msg:  The textual message of the response.                                         
+##                                                                                    
+event imap_reply%(c: connection, is_orig: bool, code: string, msg: string%);
+
+##                                                                                    
+## c: The connection.                                                                 
+##                                                                                    
+## is_orig: True if the data was sent by the originator of the TCP connection.        
+##                                                                                    
+## command : the last command sent.                                                   
+##                                                                                    
+## msg: A textual description of the situation.                                       
+##                                                                                    
+event imap_unexpected%(c:connection,  is_orig: bool, command:string, msg: string%);
+
+##                                                                                    
+## c: The connection.                                                                 
+##                                                                                    
+## auth: the authentication type (LOGIN, PLAIN, CRAMM-MD5, DIGEST-MD5)                
+##                                                                                    
+## arg1 : user si authentification login, hash du client si Cram_md5 ..               
+##                                                                                    
+## arg2 : password si authentification login, hash du server si Cram_md5 ..           
+##                                                                                    
+event imap_login_success%(c:connection, auth:string, arg1:string, arg2:string%);
+##                                                                                    
+## c: The connection.                                                                 
+##                                                                                    
+## auth: the authentication type (LOGIN, PLAIN, CRAMM-MD5, DIGEST-MD5)                
+##                                                                                    
+## arg1 : user si authentification login, hash du client si Cram_md5 ..               
+##                                                                                    
+## arg2 : password si authentification login, hash du server si Cram_md5 ..           
+##                                                                                    
+event imap_login_failure%(c:connection, auth:string, arg1:string, arg2:string%);
+
+##                                                                                    
+## c: The connection.                                                                 
+##                                                                                    
+## cmd : the last client command.                                                     
+##                                                                                    
+## is_orig: True if the data was sent by the originator of the TCP connection.        
+##                                                                                    
+## arg: The data sent.                                                                
+event imap_data%(c:connection, is_orig: bool, mail_segment:bool, cmd:string, arg:string%);

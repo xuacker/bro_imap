@@ -1,0 +1,70 @@
+// Definitions of IMAP commands (RFC 3501)
+
+// no commands here
+// ===========================================
+IMAP_CMD_DEF(START)
+
+
+// ===========================================
+// Every state
+IMAP_CMD_DEF(CAPABILITY)
+IMAP_CMD_DEF(NOOP)
+IMAP_CMD_DEF(LOGOUT)
+IMAP_CMD_DEF(PREAUTH)
+
+// ===========================================
+// NO AUTHENTICATED state
+
+IMAP_CMD_DEF(LOGIN)
+IMAP_CMD_DEF(AUTHENTICATE)
+IMAP_CMD_DEF(STARTTLS)
+
+
+// ===========================================
+// NO AUTHENTICATED state
+
+IMAP_CMD_DEF(SELECT)
+IMAP_CMD_DEF(EXAMINE)
+IMAP_CMD_DEF(CREATE)
+IMAP_CMD_DEF(DELETE)
+IMAP_CMD_DEF(RENAME)
+IMAP_CMD_DEF(SUBSCRIBE)
+IMAP_CMD_DEF(UNSUBSCRIBE)
+IMAP_CMD_DEF(LIST)
+IMAP_CMD_DEF(LSUB)
+IMAP_CMD_DEF(STATUS)
+IMAP_CMD_DEF(APPEND)
+
+
+// ===========================================
+// SELECTED state
+
+IMAP_CMD_DEF(COPY)
+IMAP_CMD_DEF(CHECK)
+IMAP_CMD_DEF(CLOSE)
+IMAP_CMD_DEF(EXPUNGE)
+IMAP_CMD_DEF(SEARCH)
+IMAP_CMD_DEF(FETCH)
+IMAP_CMD_DEF(STORE)
+IMAP_CMD_DEF(UID)
+
+
+// ===========================================
+// RESPONSE - State
+IMAP_CMD_DEF(BYE)
+IMAP_CMD_DEF(OK)
+IMAP_CMD_DEF(NO)
+IMAP_CMD_DEF(BAD)
+
+
+// ===========================================
+// NOT IN RFC 3501
+IMAP_CMD_DEF(NAMESPACE)
+IMAP_CMD_DEF(IDLE)
+IMAP_CMD_DEF(ENABLED)
+IMAP_CMD_DEF(ENABLE)
+IMAP_CMD_DEF(ID)
+
+IMAP_CMD_DEF(END)
+// ===========================================
+// no commands here
