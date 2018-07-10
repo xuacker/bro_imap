@@ -386,7 +386,7 @@ void IMAP_Analyzer::ProcessRequest(int length, const char *line) {
 void IMAP_Analyzer::ProcessReply(int length, const char *line) {
             const char* end_of_line = line + length;
     char return_line[1500];
-    const char* end_of_line = line + length;
+    const char  ch = ')';
     EventHandlerPtr f = imap_reply;
     string origCmd;
     int error_code = -1;
