@@ -384,6 +384,8 @@ void IMAP_Analyzer::ProcessRequest(int length, const char *line) {
 
 
 void IMAP_Analyzer::ProcessReply(int length, const char *line) {
+            const char* end_of_line = line + length;
+    char return_line[1500];
     const char* end_of_line = line + length;
     EventHandlerPtr f = imap_reply;
     string origCmd;
@@ -690,7 +692,17 @@ void IMAP_Analyzer::ProcessReply(int length, const char *line) {
 //                    int data_len = end_of_line - line;
 //                    ProcessData(data_len,line);
 //                }
-                ImapDataEvent(imap_data, false, true, lastcmd.c_str(), line);
+    
+                if (length == 1){
+                    if ( strchr(line, ch)){
+                        sprintf(return_line, "\r\n%s\r\n", line);
+                    }else{
+                        sprintf(return_line,"%s\r\n",line);
+                    }
+                }else{
+                    sprintf(return_line,"%s\r\n",line);
+                }
+                ImapDataEvent(imap_data, false, true, lastcmd.c_str(), return_line);
                 mail_segment = false;
             } else{
 //                if (mail) {
@@ -702,7 +714,16 @@ void IMAP_Analyzer::ProcessReply(int length, const char *line) {
 //                    ProcessData(data_len,line);
 //
 //                }
-                ImapDataEvent(imap_data, false, false, lastcmd.c_str(), line);
+                 if (length == 1){
+                    if ( strchr(line, ch)){
+                        sprintf(return_line, "\r\n%s\r\n", line);
+                    }else{
+                        sprintf(return_line,"%s\r\n",line);
+                    }
+                }else{
+                    sprintf(return_line,"%s\r\n",line);
+                }
+                ImapDataEvent(imap_data, false, false, lastcmd.c_str(), return_line);
                 return;
             }
 
